@@ -24,7 +24,7 @@ class DefaultWordsTest {
     void catchesInsults() {
         for (String text : new String[]{"du arschloch", "Hurensohn!", "halt die fresse", "du bist so behindert",
                 "Fick dich", "scheiße", "voll der Spast", "du missgeburt", "fuck off", "you bitch", "Wichser",
-                "du Idiot", "a r s c h", "H u r e n s o h n"}) {
+                "du Idiot", "a r s c h", "H u r e n s o h n", "du loser", "looooooser", "LOOSER!!!", "l0000ser"}) {
             assertTrue(filter.find(text).isPresent(), text);
         }
     }
@@ -36,7 +36,7 @@ class DefaultWordsTest {
                 "war schön heute", "Ich mache eine Arschbombe in den See", "Warschau ist in Polen",
                 "Das Essen war harsch gewürzt", "Wo ist der Teppich?", "Ich bin müde, gute Nacht",
                 "lol 1 2 3 los", "Hast du Diamanten?", "Die Behinderung ist weg", "Schuhregal bauen",
-                "Ich spiele Klavier", "Der Hund frisst sein Fressen", "Shiitake-Pilze", "GG, nice!"}) {
+                "Ich spiele Klavier", "Der Hund frisst sein Fressen", "Shiitake-Pilze", "GG, nice!", "come closer", "Der Erlöser"}) {
             assertTrue(filter.find(text).isEmpty(), text + " -> " + filter.find(text).orElse(""));
         }
     }
