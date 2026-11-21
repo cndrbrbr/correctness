@@ -1,0 +1,42 @@
+# Correctness - Grundkonfiguration
+# Die Schimpfwortliste steht in words.yml. Nach Aenderungen: /correctness reload
+
+# Was geprueft wird. Gefundene Schimpfwoerter werden geblockt (nicht gesendet/gespeichert)
+# und bestraft. Spieler mit correctness.bypass (Standard: OP) sind ausgenommen.
+pruefen:
+  chat: true
+  befehle: true
+  schilder: true
+  buecher: true
+  amboss: true
+
+# Chat-Befehle, deren Text geprueft wird, und wie viele Argumente vor dem Text kommen
+# (z.B. /msg <spieler> <text> -> 1). Auch mit Praefix wie /minecraft:msg.
+befehle:
+  msg: 1
+  tell: 1
+  w: 1
+  whisper: 1
+  m: 1
+  t: 1
+  pm: 1
+  me: 0
+  say: 0
+  r: 0
+  reply: 0
+  teammsg: 0
+  tm: 0
+
+# Steigende Strafe: Minuten Gefaengnis fuer den 1., 2., 3., ... Verstoss (0 = nur Verwarnung).
+# Die letzte Stufe gilt fuer alle weiteren Verstoesse.
+strafe:
+  stufen: [0, 3, 10, 30]
+  # Nach so vielen Stunden zaehlt ein Verstoss nicht mehr (0 = nie vergessen).
+  verfall-stunden: 24
+
+# Standarddauer fuer /correctness jail <spieler> ohne Minutenangabe.
+jail-minuten: 5
+
+# Gefaengniszelle: ohne Angabe wird beim ersten Bedarf eine Grundgesteinszelle hoch ueber dem
+# Spawn der Hauptwelt gebaut (6 Bloecke neben der von BlockWatch) und hier eingetragen.
+# Verschieben mit /correctness setjail.

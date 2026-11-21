@@ -1,0 +1,82 @@
+# Correctness - Schimpfwortliste
+# Nach Aenderungen: /correctness reload   |   Testen: /correctness test <text>
+#
+# Gross/klein, Umlaute (ae/oe/ue/ss), Leetspeak (4=a 3=e 1=i 0=o 5=s 7=t @=a $=s),
+# Satzzeichen im Wort (a.r.s.c.h), einzeln geschriebene Buchstaben (a r s c h) und
+# wiederholte Buchstaben (aaarsch) werden automatisch erkannt. Doppelbuchstaben in
+# der Liste sind egal ("scheisse" = "scheise").
+
+# Treffer auch INNERHALB eines Wortes: "hure" trifft auch "Hurensohn".
+woerter:
+  # Deutsch
+  - arsch
+  - fick
+  - fotze
+  - hure
+  - nutte
+  - schlampe
+  - wichser
+  - wixer
+  - pimmel
+  - scheiss
+  - spast
+  - spacko
+  - missgeburt
+  - mistgeburt
+  - bastard
+  - idiot
+  - trottel
+  - depp
+  - dummkopf
+  - penner
+  - drecksau
+  - hackfresse
+  - kackbratze
+  - verpiss
+  - schwuchtel
+  - kanake
+  - neger
+  # Englisch
+  - fuck
+  - shit
+  - bitch
+  - cunt
+  - asshole
+  - whore
+  - slut
+  - wanker
+  - faggot
+  - retard
+  - nigga
+
+# Treffer nur als GANZES Wort (kurze Woerter, die sonst in harmlosen Woertern stecken).
+ganze-woerter:
+  - huso
+  - hdf
+  - fresse
+  - behindert
+  - behinderte
+  - behinderter
+  - behindi
+  - mongo
+  - nazi
+  - nazis
+  - nigger
+  - niggers
+  - fag
+  - twat
+  - cock
+  - pussy
+  - stfu
+  - kys
+
+# Harmlose Woerter, die ein Wort aus "woerter" enthalten. Sie werden vorher entfernt,
+# "Marsch" bleibt also erlaubt, "Marschhure" nicht.
+ausnahmen:
+  - marsch
+  - barsch
+  - harsch
+  - warschau
+  - arschbombe
+  - scunthorpe
+  - shiitake

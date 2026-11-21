@@ -1,0 +1,21 @@
+name: Correctness
+version: ${project.version}
+main: io.github.cndrbrbr.correctness.CorrectnessPlugin
+api-version: '26.3'
+author: cndrbrbr
+description: '${project.description}'
+
+commands:
+  correctness:
+    description: Correctness - Chat-Kontrolle und Gefängnis
+    usage: /<command> <jail|frei|setjail|test|verstoesse|vergeben|reload>
+    aliases: [cn]
+    permission: correctness.admin
+
+permissions:
+  correctness.admin:
+    description: Darf /correctness benutzen und sieht Meldungen über Verstöße
+    default: op
+  correctness.bypass:
+    description: Wird nicht gefiltert und nicht bestraft
+    default: op
