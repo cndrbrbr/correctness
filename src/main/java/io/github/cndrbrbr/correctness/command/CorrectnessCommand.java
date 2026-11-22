@@ -82,7 +82,11 @@ public final class CorrectnessCommand implements TabExecutor {
             sender.sendMessage("§cMinuten müssen größer als 0 sein.");
             return;
         }
-        plugin.getJailManager().jail(target, minutes, "Eingesperrt von " + sender.getName() + ".");
+        if (!plugin.getJailManager().jail(target, minutes, "Eingesperrt von " + sender.getName() + ".")) {
+            sender.sendMessage("§c" + target.getName() + " wurde nicht eingesperrt: sitzt schon in einem anderen"
+                    + " Gefängnis oder es gibt keine Zelle (siehe Server-Log).");
+            return;
+        }
         sender.sendMessage("§a" + target.getName() + " ist für " + minutes + " Minuten im Gefängnis.");
     }
 

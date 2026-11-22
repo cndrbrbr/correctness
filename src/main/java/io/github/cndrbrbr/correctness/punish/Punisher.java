@@ -63,19 +63,25 @@ public final class Punisher {
         int count = tracker.record(player.getUniqueId());
         int minutes = tracker.minutesFor(count);
         save();
-        log(player, source, word, text, count, minutes);
 
         String reason = "Beleidigungen und Schimpfwörter sind hier verboten.";
+        boolean jailedElsewhere = false;
         if (minutes <= 0) {
             int next = tracker.minutesFor(count + 1);
             player.sendMessage("§c§lVerwarnung! §r§c" + reason
                     + (next > 0 ? " Beim nächsten Mal geht es für " + next + " Min. ins Gefängnis." : ""));
-        } else {
-            plugin.getJailManager().jail(player, minutes, reason);
+        } else if (!plugin.getJailManager().jail(player, minutes, reason)) {
+            // Sitzt schon in einem anderen Gefaengnis (z. B. BlockWatch): nur zaehlen, nicht doppelt einsperren.
+            player.sendMessage("§c" + reason + " Der Verstoß wurde gezählt.");
+            minutes = 0;
+            jailedElsewhere = plugin.getJailManager().jailedElsewhere(player);
         }
 
+        log(player, source, word, text, count, minutes, jailedElsewhere);
+
         String notice = "§6Correctness §7" + player.getName() + " (" + source.label() + ", " + count + ". Verstoß): §f"
-                + word + (minutes > 0 ? " §7→ " + minutes + " Min. Gefängnis" : " §7→ Verwarnung");
+                + word + (minutes > 0 ? " §7→ " + minutes + " Min. Gefängnis"
+                        : jailedElsewhere ? " §7→ sitzt schon in einem anderen Gefängnis" : " §7→ Verwarnung");
         for (Player online : Bukkit.getOnlinePlayers()) {
             if (online != player && online.hasPermission("correctness.admin")) {
                 online.sendMessage(notice);
@@ -83,8 +89,10 @@ public final class Punisher {
         }
     }
 
-    private void log(Player player, Source source, String word, String text, int count, int minutes) {
-        String result = minutes > 0 ? minutes + " Min. Gefängnis" : "Verwarnung";
+    private void log(Player player, Source source, String word, String text, int count, int minutes,
+            boolean jailedElsewhere) {
+        String result = minutes > 0 ? minutes + " Min. Gefängnis"
+                : jailedElsewhere ? "sitzt schon in anderem Gefängnis" : "Verwarnung";
         plugin.getLogger().info(player.getName() + " (" + source.label() + "): \"" + word + "\" → " + result);
         String line = ZonedDateTime.now().format(TIME) + " | " + player.getName() + " | " + source.label()
                 + " | " + word + " | " + count + ". Verstoß | " + result + " | " + text.replace('\n', ' ')

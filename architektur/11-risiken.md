@@ -4,7 +4,7 @@
 
 | Risiko | Folge | Gegenmaßnahme / Stand |
 |---|---|---|
-| **Correctness und BlockWatch auf demselben Server, Spieler sitzt in einem Gefängnis und wird vom anderen Plugin auch eingesperrt** | Jedes Plugin blockiert die Teleports des anderen als „fremd“. Das zweite Plugin merkt sich die erste Zelle als „alten Ort“ und *Abenteuer* als Spielmodus. Am Ende wird der Spieler in die erste Zelle „freigelassen“, im Abenteuermodus – aus der Grundgesteinszelle kommt er ohne Admin nicht heraus | Heute keine Überschneidung (Correctness nur auf meck mc2, BlockWatch nicht dort). Vor gemeinsamem Einsatz lösen, z. B. Insassen des anderen Plugins nicht erneut einsperren, oder ein gemeinsames Gefängnis ([ADR-0003](adr/0003-gefaengnis-kopiert-statt-abhaengigkeit.md)) |
+| Correctness und BlockWatch auf demselben Server, Spieler sitzt schon im Gefängnis des anderen Plugins | Bis 0.1.1: Teleports blockierten sich gegenseitig, Spieler endete in einer Zelle im Abenteuermodus | **Behoben in 0.1.1 / BlockWatch 0.3.2:** gegenseitige Markierung, kein Doppel-Einsperren ([ADR-0005](adr/0005-gefaengnisse-markieren-sich-gegenseitig.md)). Wirkt nur, wenn beide Plugins aktuell sind; im Spiel mit zwei Plugins noch nicht getestet |
 | Fehlalarme durch Teilwort-Treffer | Harmlose Nachricht blockiert, Kind wird bestraft | Ausnahmenliste, `ganze-woerter`, `DefaultWordsTest`; Verwarnung als erste Stufe; `/cn vergeben` |
 | Umgehung (Wort auf zwei Nachrichten verteilt, andere Schreibweisen, Unicode-Ähnlichkeiten wie kyrillisches „а“) | Nicht erkannt | Liste ergänzen; Admins bekommen weiterhin alles im Chat mit |
 | Beleidigung ohne Schimpfwort | Nicht erkannt | Bewusst nicht im Umfang |

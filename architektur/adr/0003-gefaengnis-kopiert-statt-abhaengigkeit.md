@@ -25,6 +25,5 @@ nicht in der BlockWatch-Zelle landet.
 
 - Beide Plugins unabhängig installierbar.
 - Fehlerkorrekturen müssen in beiden Repos gemacht werden.
-- Die beiden Gefängnisse wissen nichts voneinander – Problem bei Doppel-Einsperrung auf einem
-  Server ([Risiken](../11-risiken.md)). Wenn beide zusammen eingesetzt werden sollen, diese
-  Entscheidung überdenken (gemeinsame Bibliothek oder gegenseitige Abfrage).
+- Die beiden Gefängnisse wussten zunächst nichts voneinander (Doppel-Einsperrung, siehe Risiken);
+  seit 0.1.1 markieren sie sich gegenseitig ([ADR-0005](0005-gefaengnisse-markieren-sich-gegenseitig.md)).
