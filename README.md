@@ -61,6 +61,10 @@ jail-minuten: 5                          # Standard für /cn jail
 jail: {world: ..., x: ..., y: ..., z: ...}   # wird automatisch gesetzt
 ```
 
+## Architektur
+
+Aufbau, Konzepte und Entscheidungen nach arc42: [architektur/](architektur/README.md).
+
 ## Bauen
 
 ```
